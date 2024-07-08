@@ -67,9 +67,9 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ImageViewHolder>() {
             rating = movie.rating.ratingKP.toDouble()
         }
         val backgroundID: Int
-        if (rating > 8) {
+        if (rating > 7) {
             backgroundID = R.drawable.cyrle_green
-        } else if (rating > 6) {
+        } else if (rating > 5) {
             backgroundID = R.drawable.cyrcle_orange
         } else {
             backgroundID = R.drawable.cyrcle_red

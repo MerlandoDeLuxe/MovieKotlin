@@ -15,7 +15,6 @@ class MovieDetailViewModel(application: Application) : AndroidViewModel(applicat
     val trailersLD: MutableLiveData<List<Trailer>> = MutableLiveData()
     val reviewsLD: MutableLiveData<List<Review>> = MutableLiveData()
     private val movieDAO = MovieDatabase.getInstance(application).MovieDAO;
-    private var page = 1
 
     fun loadFavoriteMovie(movieId: Int): LiveData<Movie> {
         return movieDAO.loadFavoriteMovie(movieId)
@@ -65,14 +64,13 @@ class MovieDetailViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    fun loadReviews(movieId: Int) {
+    fun loadReviews(movieId: Int, page: Int) {
         val disposable = ApiFactory.getInstance()?.loadReviews(movieId, page)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.map { it.reviewList }
             ?.subscribe({
                 reviewsLD.value = it
-                page++
                 Log.d(TAG, "loadReview: review = $it")
                 Log.d(TAG, "loadReview: reviewsize = ${it.size}")
                 Log.d(TAG, "loadReview: page = $page")

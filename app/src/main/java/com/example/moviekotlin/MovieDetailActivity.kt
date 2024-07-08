@@ -31,6 +31,7 @@ class MovieDetailActivity : AppCompatActivity() {
     lateinit var reviewAdapter: MovieReviewAdapter
     lateinit var recyclerViewReview: RecyclerView
     lateinit var imageViewStar: ImageView
+    var page = 1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,9 @@ class MovieDetailActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        if (savedInstanceState != null){
+            page = savedInstanceState.getInt("page")
         }
 //===============================================================================================
         initializeAllElements()
@@ -62,12 +66,12 @@ class MovieDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 //===============================================================================================
-        viewModel.loadReviews(movie.id)
+        viewModel.loadReviews(movie.id, page)
         viewModel.reviewsLD.observe(this) {
             reviewAdapter.reviewList = it
         }
         reviewAdapter.setOnReachEndListener {
-            viewModel.loadReviews(movie.id)
+            viewModel.loadReviews(movie.id, page)
         }
 //===============================================================================================
         val starOff = ContextCompat.getDrawable(this, android.R.drawable.star_big_off)
@@ -86,6 +90,15 @@ class MovieDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("page", page)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     fun newIntent(context: Context, movie: Movie): Intent {
