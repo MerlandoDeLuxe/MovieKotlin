@@ -18,20 +18,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class MovieDetailActivity : AppCompatActivity() {
-    val TAG = "MovieDetailActivity"
-    val EXTRA_MOVIE = "movie"
-    lateinit var imageViewPoster: ImageView
-    lateinit var textViewMovieName: TextView
-    lateinit var textViewMovieYear: TextView
-    lateinit var textViewMovieDescription: TextView
-    lateinit var movie: Movie
-    lateinit var viewModel: MovieDetailViewModel
-    lateinit var trailerAdapter: MovieTrailerAdapter
-    lateinit var recyclerViewTrailerButtons: RecyclerView
-    lateinit var reviewAdapter: MovieReviewAdapter
-    lateinit var recyclerViewReview: RecyclerView
-    lateinit var imageViewStar: ImageView
-    var page = 1;
+    private val TAG = "MovieDetailActivity"
+    private val EXTRA_MOVIE = "movie"
+    private lateinit var imageViewPoster: ImageView
+    private lateinit var textViewMovieName: TextView
+    private lateinit var textViewMovieYear: TextView
+    private lateinit var textViewMovieDescription: TextView
+    private lateinit var movie: Movie
+    private lateinit var viewModel: MovieDetailViewModel
+    private lateinit var trailerAdapter: MovieTrailerAdapter
+    private lateinit var recyclerViewTrailerButtons: RecyclerView
+    private lateinit var reviewAdapter: MovieReviewAdapter
+    private lateinit var recyclerViewReview: RecyclerView
+    private lateinit var imageViewStar: ImageView
+    private var page = 1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
