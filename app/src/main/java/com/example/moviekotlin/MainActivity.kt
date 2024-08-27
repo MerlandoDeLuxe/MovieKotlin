@@ -1,6 +1,7 @@
 package com.example.moviekotlin
 
 import android.os.Bundle
+import android.util.JsonWriter
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ProgressBar
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        initializeAllElements()
         initializeAllElements()
 //===============================================================================================
         viewModel.listOfMoviesMLD.observe(this) {
