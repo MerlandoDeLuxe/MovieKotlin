@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         initializeAllElements()
+        initializeAllElements()
 //===============================================================================================
         viewModel.listOfMoviesMLD.observe(this) {
             moviesAdapter.listOfMovies = it
